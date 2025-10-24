@@ -1,4 +1,4 @@
-# RPG-Translator
+# Web Translator for RPG Maker MV/MZ
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -46,7 +46,6 @@ bun run build
 ```sh
 bun lint
 ```
-# Web Translator for RPG Maker MV/MZ
 
 ## TODO
 * [ ] （可移动的）文本窗口
