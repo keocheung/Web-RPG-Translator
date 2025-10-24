@@ -1,0 +1,10 @@
+@import 'vue-draggable-resizable/style.css';
+
+#rpg-translator-app {
+  position: fixed;
+  z-index: 2;
+}
+
+.draggable {
+  background-color: white;
+}

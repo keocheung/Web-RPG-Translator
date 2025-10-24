@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "RPG Maker Translator",
+  "version": "0.0.1",
+  "description": "RPG Maker Translator",
+  "action": {
+    "default_icon": "favicon.ico"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "options_page": "src/options/index.html",
+  "permissions": [
+    "activeTab", 
+    "scripting"
+  ]
+}
