@@ -17,7 +17,15 @@
         <n-input v-model:value="config.openAi.baseUrl" placeholder="https://api.openai.com/v1" />
       </n-form-item>
       <n-form-item label="OpenAI API Key" path="openAi.apiKey">
-        <n-input v-model:value="config.openAi.apiKey" placeholder="sk-..." />
+        <n-input
+          v-model:value="config.openAi.apiKey"
+          placeholder="sk-..."
+          :style="{
+            'font-family': 'monospace',
+          }"
+          type="password"
+          show-password-on="mousedown"
+        />
       </n-form-item>
       <n-form-item label="Prompt" path="prompt">
         <n-input
