@@ -44,13 +44,13 @@ chrome.action.onClicked.addListener(async (tab) => {
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: () => {
+        // @ts-expect-error 访问游戏中可能存在的全局变量
+        const dataCharacters = window.$dataCharaters as DataCharacter[]
+        // @ts-expect-error 访问游戏中可能存在的全局变量
+        const dataItems = window.$dataItems as DataItem[]
+        const sendMessage = () => {
           // @ts-expect-error 访问游戏中可能存在的全局变量
-          const dataCharacters = window.$dataCharaters as DataCharacter[]
-          // @ts-expect-error 访问游戏中可能存在的全局变量
-          const dataItems = window.$dataItems as DataItem[]
-          const sendMessage = async () => {
-            // @ts-expect-error 访问游戏中可能存在的全局变量
-            const gameMessage = (window.$gameMessage as GameMessage)._texts
+          const gameMessage = (window.$gameMessage as GameMessage)._texts
             .join('')
             .replaceAll(/\\S[EA]\[\d+\]/g, '')
             .replaceAll(/<I\\\*?item\[(\d+)\]>/g, (s, id) => {
@@ -59,18 +59,21 @@ chrome.action.onClicked.addListener(async (tab) => {
             .replaceAll(/\\N\[(\d+)\]>/g, (s, id) => {
               return dataCharacters[parseInt(id)]?.name || ''
             })
-          // 使用window.postMessage替代chrome.runtime.sendMessage，因为在MAIN world中chrome.runtime可能不可用
+          if (!gameMessage) {
+            return
+          }
           window.postMessage({
-            type: 'RPG_TRANSLATE_REQUEST',
-            data: gameMessage,
-          }, '*')
+            type: 'GAME_MESSAGE',
+            payload: gameMessage,
+          })
+          console.log('Sent message:', gameMessage)
         }
         document.addEventListener('click', sendMessage)
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ' || e.key === 'Control') {
-            setInterval(sendMessage, 100)
-          }
-        })
+        // document.addEventListener('keydown', (e) => {
+        //   if (e.key === 'Enter' || e.key === ' ' || e.key === 'Control') {
+        //     setInterval(sendMessage, 100)
+        //   }
+        // })
       },
       world: 'MAIN',
     })
@@ -81,7 +84,20 @@ chrome.action.onClicked.addListener(async (tab) => {
   try {
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      files: ['inject.js'],
+      func: (config) => {
+        window.__EXTENSION_SETTINGS_URL__ = chrome.runtime.getURL('src/options/index.html')
+        window.__CONFIG__ = config
+      },
+      args: [cfg.value],
+    })
+  } catch (error) {
+    console.error('Failed to inject content script:', error)
+  }
+
+  try {
+    await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      files: ['inject/main.js'],
     })
   } catch (error) {
     console.error('Failed to inject content script:', error)

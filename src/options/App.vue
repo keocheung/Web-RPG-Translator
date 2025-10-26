@@ -27,6 +27,9 @@
           show-password-on="mousedown"
         />
       </n-form-item>
+      <n-form-item label="Model" path="model">
+        <n-input v-model:value="config.model" placeholder="gpt-4o" />
+      </n-form-item>
       <n-form-item label="Prompt" path="prompt">
         <n-input
           v-model:value="config.prompt"

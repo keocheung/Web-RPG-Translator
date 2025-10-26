@@ -11,5 +11,5 @@
     "type": "module"
   },
   "options_page": "src/options/index.html",
-  "permissions": ["activeTab", "scripting"]
+  "permissions": ["activeTab", "scripting", "storage"]
 }

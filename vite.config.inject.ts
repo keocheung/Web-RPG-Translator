@@ -18,7 +18,7 @@ export default defineConfig({
         inject: 'src/inject/main.ts',
       },
       output: {
-        entryFileNames: '[name].js',
+        entryFileNames: 'main.js',
         extend: true,
       },
     },
