@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "RPG Maker Translator",
+  "name": "Web RPG Translator",
   "version": "0.0.1",
-  "description": "RPG Maker Translator",
+  "description": "Web Translator for RPG Maker MV/MZ",
   "action": {
     "default_icon": "favicon.ico"
   },
@@ -11,8 +11,5 @@
     "type": "module"
   },
   "options_page": "src/options/index.html",
-  "permissions": [
-    "activeTab", 
-    "scripting"
-  ]
+  "permissions": ["activeTab", "scripting"]
 }
