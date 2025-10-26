@@ -44,13 +44,13 @@ chrome.action.onClicked.addListener(async (tab) => {
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: () => {
-        // @ts-ignore
-        const dataCharacters = window.$dataCharaters as DataCharacter[]
-        // @ts-ignore
-        const dataItems = window.$dataItems as DataItem[]
-        const sendMessage = async () => {
-          // @ts-ignore
-          const gameMessage = (window.$gameMessage as GameMessage)._texts
+          // @ts-expect-error 访问游戏中可能存在的全局变量
+          const dataCharacters = window.$dataCharaters as DataCharacter[]
+          // @ts-expect-error 访问游戏中可能存在的全局变量
+          const dataItems = window.$dataItems as DataItem[]
+          const sendMessage = async () => {
+            // @ts-expect-error 访问游戏中可能存在的全局变量
+            const gameMessage = (window.$gameMessage as GameMessage)._texts
             .join('')
             .replaceAll(/\\S[EA]\[\d+\]/g, '')
             .replaceAll(/<I\\\*?item\[(\d+)\]>/g, (s, id) => {
@@ -59,16 +59,11 @@ chrome.action.onClicked.addListener(async (tab) => {
             .replaceAll(/\\N\[(\d+)\]>/g, (s, id) => {
               return dataCharacters[parseInt(id)]?.name || ''
             })
-          chrome.runtime.sendMessage(
-            {
-              type: 'GET_TRANSLATION',
-              data: gameMessage,
-            },
-            (response) => {
-              const completion = response.data
-              window.postMessage({ fromPage: true, payload: completion })
-            },
-          )
+          // 使用window.postMessage替代chrome.runtime.sendMessage，因为在MAIN world中chrome.runtime可能不可用
+          window.postMessage({
+            type: 'RPG_TRANSLATE_REQUEST',
+            data: gameMessage,
+          }, '*')
         }
         document.addEventListener('click', sendMessage)
         document.addEventListener('keydown', (e) => {
@@ -86,7 +81,7 @@ chrome.action.onClicked.addListener(async (tab) => {
   try {
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      files: ['main.js'],
+      files: ['inject.js'],
     })
   } catch (error) {
     console.error('Failed to inject content script:', error)

@@ -8,10 +8,10 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-s type-check \"build-only {@}\" build-inject",
     "preview": "vite preview",
     "build-only": "vite build",
-    "build-js": "vite build --config vite.config.inject.ts",
+    "build-inject": "vite build --config vite.config.inject.ts",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix --cache",
     "format": "prettier --write src/"
