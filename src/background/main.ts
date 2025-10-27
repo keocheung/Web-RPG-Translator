@@ -108,8 +108,8 @@ chrome.runtime.onMessage.addListener(async (msg, sender, sendResponse) => {
   }
   if ((msg.type === 'GET_TRANSLATION', msg.data)) {
     const client = new OpenAI({
-      baseURL: cfg.value.openAi.baseUrl,
-      apiKey: cfg.value.openAi.apiKey,
+      baseURL: cfg.value.openai.baseUrl,
+      apiKey: cfg.value.openai.apiKey,
       dangerouslyAllowBrowser: true,
     })
     const completion = await client.chat.completions.create({

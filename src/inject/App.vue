@@ -78,8 +78,8 @@ export default {
       console.log('Received message from page:', event.data.payload)
       this.mainText = ''
       const client = new OpenAI({
-        baseURL: cfg.openAi.baseUrl,
-        apiKey: cfg.openAi.apiKey,
+        baseURL: cfg.openai.baseUrl,
+        apiKey: cfg.openai.apiKey,
         dangerouslyAllowBrowser: true,
       })
       const stream = await client.chat.completions.create({
