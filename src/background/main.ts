@@ -44,12 +44,9 @@ chrome.action.onClicked.addListener(async (tab) => {
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: () => {
-        // @ts-expect-error 访问游戏中可能存在的全局变量
         const dataCharacters = window.$dataCharaters as DataCharacter[]
-        // @ts-expect-error 访问游戏中可能存在的全局变量
         const dataItems = window.$dataItems as DataItem[]
         const sendMessage = () => {
-          // @ts-expect-error 访问游戏中可能存在的全局变量
           const gameMessage = (window.$gameMessage as GameMessage)._texts
             .join('')
             .replaceAll(/\\S[EA]\[\d+\]/g, '')

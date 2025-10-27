@@ -3,13 +3,36 @@
     <n-flex vertical>
       <n-flex justify="flex-end">
         <n-button-group>
-          <n-button>翻译 (T)</n-button>
-          <n-button>历史 (H)</n-button>
-          <n-button @click="openSettingsPage">
-            <n-icon>
-              <SettingsSharp />
-            </n-icon>
-          </n-button>
+          <n-tooltip trigger="hover">
+            <template #trigger>
+              <n-button style="font-size: 20px">
+                <n-icon>
+                  <TranslateRound />
+                </n-icon>
+              </n-button>
+            </template>
+            刷新翻译 (T)
+          </n-tooltip>
+          <n-tooltip trigger="hover">
+            <template #trigger>
+              <n-button style="font-size: 20px">
+                <n-icon>
+                  <HistoryRound />
+                </n-icon>
+              </n-button>
+            </template>
+            历史记录 (H)
+          </n-tooltip>
+          <n-tooltip trigger="hover">
+            <template #trigger>
+              <n-button style="font-size: 20px" @click="openSettingsPage">
+                <n-icon>
+                  <SettingsRound />
+                </n-icon>
+              </n-button>
+            </template>
+            全局设置
+          </n-tooltip>
         </n-button-group>
       </n-flex>
       <p>
@@ -20,8 +43,8 @@
 </template>
 
 <script lang="ts">
-import { NFlex, NButtonGroup, NButton, NIcon } from 'naive-ui'
-import { SettingsSharp } from '@vicons/ionicons5'
+import { NFlex, NButtonGroup, NButton, NIcon, NTooltip } from 'naive-ui'
+import { SettingsRound, HistoryRound, TranslateRound } from '@vicons/material'
 import OpenAI from 'openai'
 import type { Config } from '@/stores/config'
 
@@ -73,7 +96,10 @@ export default {
     NButtonGroup,
     NButton,
     NIcon,
-    SettingsSharp,
+    NTooltip,
+    SettingsRound,
+    HistoryRound,
+    TranslateRound,
   },
 }
 </script>
