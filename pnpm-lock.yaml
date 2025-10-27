@@ -11,9 +11,15 @@ importers:
       '@vueuse/core':
         specifier: ^14.0.0
         version: 14.0.0(vue@3.5.22(typescript@5.9.3))
+      highlight.js:
+        specifier: ^11.11.1
+        version: 11.11.1
       openai:
         specifier: ^6.6.0
         version: 6.7.0
+      simple-code-editor:
+        specifier: ^2.1.0
+        version: 2.1.0
       vue:
         specifier: ^3.5.22
         version: 3.5.22(typescript@5.9.3)
@@ -1509,6 +1515,9 @@ packages:
   shell-quote@1.8.3:
     resolution: {integrity: sha512-ObmnIF4hXNg1BqhnHmgbDETF8dLPCggZWBjkQfhZpbszZnYur5DUljTcCHii5LC3J5E0yeO/1LIMyH+UvHQgyw==}
     engines: {node: '>= 0.4'}
+
+  simple-code-editor@2.1.0:
+    resolution: {integrity: sha512-mQ0bNhkOKgRFyoDF54zwuhWt8Wcj+T0sciCvyD3qJnNMOv01x4guRhq8ksUDUGUmAm3vPOWvkhP+YwKja0yh2g==}
 
   sirv@3.0.2:
     resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
@@ -3142,6 +3151,10 @@ snapshots:
   shebang-regex@3.0.0: {}
 
   shell-quote@1.8.3: {}
+
+  simple-code-editor@2.1.0:
+    dependencies:
+      highlight.js: 11.11.1
 
   sirv@3.0.2:
     dependencies:

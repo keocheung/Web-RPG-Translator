@@ -35,7 +35,7 @@
           </n-tooltip>
         </n-button-group>
       </n-flex>
-      <p>
+      <p id="webRPGTranslatorMainText">
         {{ mainText }}
       </p>
     </n-flex>
@@ -47,6 +47,10 @@ import { NFlex, NButtonGroup, NButton, NIcon, NTooltip } from 'naive-ui'
 import { SettingsRound, HistoryRound, TranslateRound } from '@vicons/material'
 import OpenAI from 'openai'
 import type { Config } from '@/stores/config'
+
+const style = document.createElement('style')
+style.appendChild(document.createTextNode(window.__CONFIG__.customCSS))
+document.head.appendChild(style)
 
 export default {
   name: 'App',
@@ -91,6 +95,11 @@ export default {
       }
     })
   },
+  // computed: {
+  //   mainTextStyle() {
+  //     return (window.__CONFIG__ as Config).customCSS
+  //   },
+  // },
   components: {
     NFlex,
     NButtonGroup,

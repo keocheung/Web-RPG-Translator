@@ -39,13 +39,21 @@
           <n-input v-model:value="config.model" placeholder="gpt-4o" />
         </n-form-item>
         <n-form-item label="Prompt" path="prompt">
-          <n-input
-            v-model:value="config.prompt"
-            type="textarea"
-            placeholder="翻译成中文，不要添加不必要的主语"
-          />
-        </n-form-item> </n-form
-    ></n-flex>
+          <n-input v-model:value="config.prompt" type="textarea" />
+        </n-form-item>
+        <n-form-item label="Custom Style">
+          <CodeEditor
+            v-model:modelValue="config.customCSS"
+            :languages="[['css', 'CSS']]"
+            :highlight="hljs"
+            theme="atom-one-dark"
+            height="200px"
+            border-radius="3px"
+            font-size="12px"
+          ></CodeEditor>
+        </n-form-item>
+      </n-form>
+    </n-flex>
   </n-config-provider>
 </template>
 
@@ -63,6 +71,9 @@ import {
   NFormItem,
   NInput,
 } from 'naive-ui'
+import hljs from 'highlight.js'
+import css from 'highlight.js/lib/languages/css'
+import CodeEditor from 'simple-code-editor'
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
@@ -71,12 +82,15 @@ const themeOverrides: GlobalThemeOverrides = {
   },
 }
 
+hljs.registerLanguage('css', css)
+
 export default {
   name: 'App',
   data() {
     return {
       config: cfg,
       themeOverrides,
+      hljs,
     }
   },
   components: {
@@ -87,6 +101,7 @@ export default {
     NForm,
     NFormItem,
     NInput,
+    CodeEditor,
   },
   computed: {
     darkTheme() {
