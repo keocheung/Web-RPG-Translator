@@ -1,5 +1,8 @@
 # Web Translator for RPG Maker MV/MZ
 
+> [!TIP]
+> This project is work in progress.
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
@@ -9,7 +12,7 @@ This template should help get you started developing with Vue 3 in Vite.
 ## Recommended Browser Setup
 
 - Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
+  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
   - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
 - Firefox:
   - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
@@ -48,11 +51,12 @@ bun lint
 ```
 
 ## TODO
-* [ ] （可移动的）文本窗口
-* [ ] 窗口半透明、模糊
-* [ ] 设置窗口/页面
-    * [ ] OpenAI API
-* [ ] 文本历史
-* [ ] 译文缓存
-* [ ] 译文缓存导出、导入
-* [ ] 导入Mtool翻译文件
+
+- [ ] （可移动的）文本窗口
+- [ ] 窗口半透明、模糊
+- [ ] 设置窗口/页面
+  - [ ] OpenAI API
+- [ ] 文本历史
+- [ ] 译文缓存
+- [ ] 译文缓存导出、导入
+- [ ] 导入Mtool翻译文件
