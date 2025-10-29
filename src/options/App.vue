@@ -72,7 +72,7 @@
                 v-model:modelValue="config.customCSS"
                 :languages="[['css', 'CSS']]"
                 :highlight="hljs"
-                theme="atom-one-dark"
+                :theme="editorTheme"
                 height="200px"
                 border-radius="3px"
                 font-size="12px"
@@ -220,6 +220,9 @@ export default {
   computed: {
     darkTheme() {
       return useOsTheme().value === 'dark' ? darkTheme : null
+    },
+    editorTheme() {
+      return useOsTheme().value === 'dark' ? 'atom-one-dark' : 'atom-one-light'
     },
   },
 }
